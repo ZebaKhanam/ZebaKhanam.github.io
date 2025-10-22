@@ -1,82 +1,687 @@
-<!doctype html>
+# Openreach Exchange Planner - GitHub Hosting Setup
+
+## Project Structure
+
+```
+openreach-exchange-planner/
+├── index.html
+├── README.md
+└── .gitignore
+```
+
+## Step 1: Create index.html
+
+Create a file named `index.html` with the following content:
+
+```html
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv='cache-control' content='no-cache'> 
-         <meta http-equiv='expires' content='0'> 
-           <meta http-equiv='pragma' content='no-cache'>
-        <title>PrepNotes</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/themify-icons.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/flexslider.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/ytplayer.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/theme.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
-        <link href='http://fonts.googleapis.com/css?family=Lato:300,400%7CRaleway:100,400,300,500,600,700%7COpen+Sans:400,500,600' rel='stylesheet' type='text/css'>
-    </head>
-    <body class="scroll-assist">
-        <div class="nav-container">
-            <a id="top"></a>
-            <nav>
-                <div class="nav-bar">
-                    <div class="module left">
-                   
-                        
-                    </div>
-              
-               </div>
-        </nav>
-    </div>   
-    <div class="main-container">
-        <section class="cover fullscreen parallax image-bg overlay">
-            <div class="background-image-holder">
-                <img alt="image" class="background-image" src="img/notes1.jpg" />
-            </div>
-            <div class="container v-align-transform">
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <h1 class="uppercase large mb8">
-                            <strong>PREP Notes</strong> </h1>
-                        <h4 class="mb0"><strong>PR</strong>etty, <strong>E</strong>ffective, and <strong>P</strong>roductive Notes</h4>
-                    </div>
-                </div>
-                <!--end of row-->
-                <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <br>
-                            <h5 class="mb0">Have you while taking notes in a class produced an indecipherable document with words scattered all over? Growing up, I used to think I was the only one suffering due to my illegible handwriting. Over the years, I have realized I am not alone. Recent studies have revealed that 7 in 10 people struggle to read their own notes. Despite a widespread inability to take inefficient notes, notes are considered a powerful embodied cognition tool for information recall.  </h5> <br>
-                            <h4> We are here to improve note taking. Help us in our mission by taking the survey.</h4>
-                            <br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Openreach Exchange Migration Planner</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Lucide React icons as inline SVG components
+        const MapPin = ({ size = 20, className = "" }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+        );
+
+        const Zap = ({ size = 20, className = "" }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+        );
+
+        const AlertTriangle = ({ size = 20, className = "" }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+        );
+
+        const CheckCircle = ({ size = 20, className = "" }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+        );
+
+        const XCircle = ({ size = 20, className = "" }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="15" y1="9" x2="9" y2="15"></line>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
+            </svg>
+        );
+
+        const ArrowRight = ({ size = 20, className = "" }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        );
+
+        // Exchange data with coordinates (approximate UK locations)
+        const exchangeData = {
+            phase1: [
+                { name: 'Staines', lat: 51.4345, lon: -0.5073, power: 45, closure: 'Sep 2028' },
+                { name: 'Thames Ditton', lat: 51.3907, lon: -0.3331, power: 38, closure: 'Sep 2028' },
+                { name: 'Baynard', lat: 51.5134, lon: -0.0983, power: 52, closure: 'Sep 2028' },
+                { name: 'Wraysbury', lat: 51.4543, lon: -0.5489, power: 35, closure: 'Sep 2028' },
+                { name: 'Nazeing', lat: 51.7234, lon: 0.0123, power: 42, closure: 'Sep 2028' },
+                { name: 'Langford', lat: 52.0943, lon: -0.2134, power: 29, closure: 'Sep 2028' },
+                { name: 'Allestree Park', lat: 52.9543, lon: -1.4876, power: 48, closure: 'Sep 2028' },
+                { name: 'Beacon', lat: 52.4543, lon: -1.9234, power: 41, closure: 'Sep 2028' },
+                { name: 'Childwall', lat: 53.4012, lon: -2.8943, power: 55, closure: 'Sep 2028' },
+                { name: 'Lundin Links', lat: 56.2123, lon: -2.9654, power: 31, closure: 'Sep 2028' },
+                { name: 'Carrickfergus', lat: 54.7143, lon: -5.8065, power: 44, closure: 'Sep 2028' },
+                { name: 'Glengormley', lat: 54.6543, lon: -5.9543, power: 37, closure: 'Sep 2028' }
+            ]
+        };
+
+        // Receiving sites (OHPs - Openreach Handover Points)
+        const receivingSites = [
+            { name: 'London Central OHP', lat: 51.5074, lon: -0.1278, availablePower: 150, capacity: 8 },
+            { name: 'Manchester OHP', lat: 53.4808, lon: -2.2426, availablePower: 120, capacity: 6 },
+            { name: 'Birmingham OHP', lat: 52.4862, lon: -1.8904, availablePower: 140, capacity: 7 },
+            { name: 'Edinburgh OHP', lat: 55.9533, lon: -3.1883, availablePower: 100, capacity: 5 },
+            { name: 'Belfast OHP', lat: 54.5973, lon: -5.9301, availablePower: 90, capacity: 4 },
+            { name: 'Reading OHP', lat: 51.4543, lon: -0.9781, availablePower: 110, capacity: 6 }
+        ];
+
+        const ExchangePlanner = () => {
+            const [selectedExchange, setSelectedExchange] = useState(null);
+            const [selectedReceivingSite, setSelectedReceivingSite] = useState(null);
+            const [assignments, setAssignments] = useState({});
+            const [hoveredSite, setHoveredSite] = useState(null);
+
+            const canHandle = (exchange, site) => {
+                const currentLoad = Object.entries(assignments)
+                    .filter(([_, assigned]) => assigned === site.name)
+                    .reduce((sum, [exName]) => {
+                        const ex = exchangeData.phase1.find(e => e.name === exName);
+                        return sum + (ex?.power || 0);
+                    }, 0);
+                
+                const assignedCount = Object.values(assignments).filter(v => v === site.name).length;
+                
+                return {
+                    powerOk: currentLoad + exchange.power <= site.availablePower,
+                    capacityOk: assignedCount < site.capacity,
+                    currentLoad,
+                    remaining: site.availablePower - currentLoad,
+                    assignedCount
+                };
+            };
+
+            const findAlternatives = (exchange) => {
+                return receivingSites
+                    .map(site => ({
+                        site,
+                        ...canHandle(exchange, site),
+                        distance: Math.sqrt(
+                            Math.pow(exchange.lat - site.lat, 2) + 
+                            Math.pow(exchange.lon - site.lon, 2)
+                        )
+                    }))
+                    .filter(s => s.powerOk && s.capacityOk)
+                    .sort((a, b) => a.distance - b.distance);
+            };
+
+            const assignExchange = (exchangeName, siteName) => {
+                setAssignments(prev => ({ ...prev, [exchangeName]: siteName }));
+            };
+
+            const latMin = 49.5;
+            const latMax = 61;
+            const lonMin = -8.5;
+            const lonMax = 2;
+
+            const toSvg = (lat, lon) => ({
+                x: ((lon - lonMin) / (lonMax - lonMin)) * 900 + 50,
+                y: ((latMax - lat) / (latMax - latMin)) * 700 + 50
+            });
+
+            const stats = {
+                total: exchangeData.phase1.length,
+                assigned: Object.keys(assignments).length,
+                unassigned: exchangeData.phase1.length - Object.keys(assignments).length
+            };
+
+            return (
+                <div className="w-full h-screen bg-slate-900 text-white p-6 overflow-auto">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="mb-6">
+                            <h1 className="text-3xl font-bold mb-2">Openreach Exchange Migration Planner</h1>
+                            <p className="text-slate-400">Plan and visualize exchange closures and migrations to OHPs</p>
+                            
+                            <div className="grid grid-cols-3 gap-4 mt-4">
+                                <div className="bg-slate-800 p-4 rounded-lg">
+                                    <div className="text-slate-400 text-sm">Total Exchanges</div>
+                                    <div className="text-2xl font-bold">{stats.total}</div>
+                                </div>
+                                <div className="bg-green-900/30 p-4 rounded-lg border border-green-700">
+                                    <div className="text-green-400 text-sm">Assigned</div>
+                                    <div className="text-2xl font-bold text-green-400">{stats.assigned}</div>
+                                </div>
+                                <div className="bg-orange-900/30 p-4 rounded-lg border border-orange-700">
+                                    <div className="text-orange-400 text-sm">Unassigned</div>
+                                    <div className="text-2xl font-bold text-orange-400">{stats.unassigned}</div>
+                                </div>
+                            </div>
                         </div>
-                </div>
-                <!--end of row-->
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfSViHwIBXjMhGZCQuAS9pHFB4JPgY79Ax169H7L6AZtgmx_A/viewform?embedded=true"> Take the Survey! </a>
+
+                        <div className="grid grid-cols-3 gap-6">
+                            <div className="col-span-1 bg-slate-800 rounded-lg p-4 h-[calc(100vh-300px)] overflow-y-auto">
+                                <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+                                    <MapPin size={20} />
+                                    Phase 1 Exchanges
+                                </h2>
+                                <div className="space-y-2">
+                                    {exchangeData.phase1.map(exchange => (
+                                        <div
+                                            key={exchange.name}
+                                            onClick={() => setSelectedExchange(exchange)}
+                                            className={`p-3 rounded-lg cursor-pointer transition-all ${
+                                                selectedExchange?.name === exchange.name
+                                                    ? 'bg-blue-600 ring-2 ring-blue-400'
+                                                    : assignments[exchange.name]
+                                                    ? 'bg-green-900/30 border border-green-700'
+                                                    : 'bg-slate-700 hover:bg-slate-600'
+                                            }`}
+                                        >
+                                            <div className="flex items-center justify-between">
+                                                <div className="font-semibold">{exchange.name}</div>
+                                                {assignments[exchange.name] ? (
+                                                    <CheckCircle size={16} className="text-green-400" />
+                                                ) : (
+                                                    <XCircle size={16} className="text-orange-400" />
+                                                )}
+                                            </div>
+                                            <div className="text-sm text-slate-300 mt-1 flex items-center gap-2">
+                                                <Zap size={14} />
+                                                {exchange.power}kW required
+                                            </div>
+                                            {assignments[exchange.name] && (
+                                                <div className="text-xs text-green-400 mt-1 flex items-center gap-1">
+                                                    <ArrowRight size={12} />
+                                                    {assignments[exchange.name]}
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="col-span-2 bg-slate-800 rounded-lg p-4">
+                                <h2 className="text-xl font-bold mb-4">Geospatial Dashboard</h2>
+                                <svg width="100%" height="800" viewBox="0 0 1000 800" className="bg-slate-900 rounded-lg">
+                                    <defs>
+                                        <linearGradient id="ukGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style={{stopColor: '#1e3a5f', stopOpacity: 0.6}} />
+                                            <stop offset="100%" style={{stopColor: '#0f172a', stopOpacity: 0.8}} />
+                                        </linearGradient>
+                                        <filter id="glow">
+                                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+
+                                    <g>
+                                        <path d="M 280 80 L 320 70 L 360 75 L 390 90 L 410 110 L 420 135 L 415 160 L 400 180 L 380 195 L 360 205 L 340 210 L 320 208 L 300 200 L 285 185 L 275 165 L 270 140 L 272 115 Z" 
+                                              fill="url(#ukGradient)" stroke="#3b82f6" strokeWidth="2" opacity="0.7"/>
+                                        <path d="M 140 200 L 165 190 L 185 195 L 195 210 L 195 230 L 185 245 L 165 250 L 145 245 L 135 230 Z" 
+                                              fill="url(#ukGradient)" stroke="#3b82f6" strokeWidth="2" opacity="0.7"/>
+                                        <path d="M 300 215 L 330 210 L 355 215 L 375 225 L 390 240 L 400 260 L 405 285 L 408 310 L 410 340 L 412 370 L 413 400 L 414 430 L 413 460 L 410 490 L 405 515 L 398 540 L 388 560 L 375 575 L 358 585 L 338 590 L 318 588 L 298 580 L 280 568 L 265 552 L 252 533 L 242 512 L 235 488 L 232 462 L 230 435 L 228 408 L 227 380 L 226 352 L 224 325 L 220 298 L 215 272 L 208 248 L 280 245 L 290 230 Z" 
+                                              fill="url(#ukGradient)" stroke="#3b82f6" strokeWidth="2" opacity="0.7"/>
+                                        <path d="M 220 340 L 210 355 L 205 370 L 208 385 L 215 395 L 225 398 L 228 380 Z" 
+                                              fill="url(#ukGradient)" stroke="#3b82f6" strokeWidth="2" opacity="0.7"/>
+                                        <path d="M 232 590 L 220 595 L 205 593 L 195 585 L 193 573 L 200 565 L 215 563 L 228 568 Z" 
+                                              fill="url(#ukGradient)" stroke="#3b82f6" strokeWidth="2" opacity="0.7"/>
+                                    </g>
+
+                                    <g opacity="0.15">
+                                        {[...Array(20)].map((_, i) => (
+                                            <line key={`v${i}`} x1={50 + i * 50} y1="50" x2={50 + i * 50} y2="750" stroke="#64748b" strokeWidth="0.5"/>
+                                        ))}
+                                        {[...Array(16)].map((_, i) => (
+                                            <line key={`h${i}`} x1="50" y1={50 + i * 50} x2="950" y2={50 + i * 50} stroke="#64748b" strokeWidth="0.5"/>
+                                        ))}
+                                    </g>
+
+                                    {Object.entries(assignments).map(([exName, siteName]) => {
+                                        const exchange = exchangeData.phase1.find(e => e.name === exName);
+                                        const site = receivingSites.find(s => s.name === siteName);
+                                        if (!exchange || !site) return null;
+                                        
+                                        const exPos = toSvg(exchange.lat, exchange.lon);
+                                        const sitePos = toSvg(site.lat, site.lon);
+                                        
+                                        return (
+                                            <line
+                                                key={`line-${exName}`}
+                                                x1={exPos.x}
+                                                y1={exPos.y}
+                                                x2={sitePos.x}
+                                                y2={sitePos.y}
+                                                stroke="#10b981"
+                                                strokeWidth="2.5"
+                                                strokeDasharray="5,5"
+                                                opacity="0.8"
+                                                filter="url(#glow)"
+                                            />
+                                        );
+                                    })}
+
+                                    {exchangeData.phase1.map(exchange => {
+                                        const pos = toSvg(exchange.lat, exchange.lon);
+                                        const isAssigned = !!assignments[exchange.name];
+                                        const isSelected = selectedExchange?.name === exchange.name;
+                                        
+                                        return (
+                                            <g key={exchange.name}>
+                                                <circle
+                                                    cx={pos.x}
+                                                    cy={pos.y}
+                                                    r={isSelected ? 12 : 8}
+                                                    fill={isAssigned ? '#10b981' : '#f59e0b'}
+                                                    stroke={isSelected ? '#60a5fa' : 'white'}
+                                                    strokeWidth={isSelected ? 3 : 2}
+                                                    className="cursor-pointer"
+                                                    onClick={() => setSelectedExchange(exchange)}
+                                                    filter={isSelected ? "url(#glow)" : ""}
+                                                />
+                                                <text
+                                                    x={pos.x}
+                                                    y={pos.y - 18}
+                                                    textAnchor="middle"
+                                                    className="text-xs fill-white font-semibold"
+                                                    style={{ pointerEvents: 'none', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}
+                                                >
+                                                    {exchange.name}
+                                                </text>
+                                            </g>
+                                        );
+                                    })}
+
+                                    {receivingSites.map(site => {
+                                        const pos = toSvg(site.lat, site.lon);
+                                        const isHovered = hoveredSite?.name === site.name;
+                                        const isSelected = selectedReceivingSite?.name === site.name;
+                                        const status = selectedExchange ? canHandle(selectedExchange, site) : null;
+                                        
+                                        return (
+                                            <g
+                                                key={site.name}
+                                                onMouseEnter={() => setHoveredSite(site)}
+                                                onMouseLeave={() => setHoveredSite(null)}
+                                                onClick={() => {
+                                                    setSelectedReceivingSite(site);
+                                                    if (selectedExchange) {
+                                                        const check = canHandle(selectedExchange, site);
+                                                        if (check.powerOk && check.capacityOk) {
+                                                            assignExchange(selectedExchange.name, site.name);
+                                                        }
+                                                    }
+                                                }}
+                                                className="cursor-pointer"
+                                            >
+                                                <rect
+                                                    x={pos.x - 14}
+                                                    y={pos.y - 14}
+                                                    width="28"
+                                                    height="28"
+                                                    fill={status && !status.powerOk ? '#ef4444' : status && !status.capacityOk ? '#f59e0b' : '#3b82f6'}
+                                                    stroke={isSelected ? '#60a5fa' : 'white'}
+                                                    strokeWidth={isSelected ? 3 : 2}
+                                                    rx="5"
+                                                    filter={isHovered || isSelected ? "url(#glow)" : ""}
+                                                />
+                                                <text
+                                                    x={pos.x}
+                                                    y={pos.y + 5}
+                                                    textAnchor="middle"
+                                                    className="text-sm fill-white font-bold"
+                                                    style={{ pointerEvents: 'none' }}
+                                                >
+                                                    OHP
+                                                </text>
+                                                <text
+                                                    x={pos.x}
+                                                    y={pos.y + 35}
+                                                    textAnchor="middle"
+                                                    className="text-xs fill-white font-semibold"
+                                                    style={{ pointerEvents: 'none', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}
+                                                >
+                                                    {site.name.replace(' OHP', '')}
+                                                </text>
+                                                
+                                                {isHovered && selectedExchange && (
+                                                    <g>
+                                                        <rect
+                                                            x={pos.x + 25}
+                                                            y={pos.y - 55}
+                                                            width="210"
+                                                            height="90"
+                                                            fill="#1e293b"
+                                                            stroke="#475569"
+                                                            strokeWidth="2"
+                                                            rx="8"
+                                                            filter="url(#glow)"
+                                                        />
+                                                        <text x={pos.x + 35} y={pos.y - 32} className="text-sm fill-white font-bold">
+                                                            {site.name}
+                                                        </text>
+                                                        <text x={pos.x + 35} y={pos.y - 15} className="text-xs fill-slate-300">
+                                                            Current: {status.currentLoad}kW / {site.availablePower}kW
+                                                        </text>
+                                                        <text x={pos.x + 35} y={pos.y} className="text-xs fill-slate-300">
+                                                            Available: {status.remaining}kW
+                                                        </text>
+                                                        <text x={pos.x + 35} y={pos.y + 18} className="text-xs fill-slate-300">
+                                                            Capacity: {status.assignedCount} / {site.capacity} exchanges
+                                                        </text>
+                                                        <text x={pos.x + 35} y={pos.y + 36} className={`text-xs font-bold ${status.powerOk && status.capacityOk ? 'fill-green-400' : 'fill-red-400'}`}>
+                                                            {status.powerOk && status.capacityOk ? `✓ Can handle +${selectedExchange.power}kW` : `✗ ${!status.powerOk ? 'Insufficient power' : 'At capacity'}`}
+                                                        </text>
+                                                    </g>
+                                                )}
+                                            </g>
+                                        );
+                                    })}
+
+                                    <g transform="translate(50, 680)">
+                                        <rect x="0" y="0" width="200" height="95" fill="#1e293b" stroke="#475569" strokeWidth="2" rx="6" opacity="0.95"/>
+                                        <text x="10" y="20" className="text-sm fill-white font-bold">Legend</text>
+                                        <circle cx="20" cy="38" r="6" fill="#f59e0b" stroke="white" strokeWidth="1"/>
+                                        <text x="35" y="42" className="text-xs fill-white">Unassigned Exchange</text>
+                                        <circle cx="20" cy="58" r="6" fill="#10b981" stroke="white" strokeWidth="1"/>
+                                        <text x="35" y="62" className="text-xs fill-white">Assigned Exchange</text>
+                                        <rect x="13" y="71" width="14" height="14" fill="#3b82f6" stroke="white" strokeWidth="1" rx="2"/>
+                                        <text x="35" y="82" className="text-xs fill-white">Receiving Site (OHP)</text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        {selectedExchange && (
+                            <div className="mt-6 bg-slate-800 rounded-lg p-6">
+                                <h2 className="text-xl font-bold mb-4">Exchange Details & Migration Options</h2>
+                                <div className="grid grid-cols-2 gap-6">
+                                    <div>
+                                        <h3 className="text-lg font-semibold mb-3 text-blue-400">{selectedExchange.name}</h3>
+                                        <div className="space-y-2 text-sm">
+                                            <div className="flex justify-between">
+                                                <span className="text-slate-400">Power Requirement:</span>
+                                                <span className="font-semibold">{selectedExchange.power} kW</span>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <span className="text-slate-400">Closure Date:</span>
+                                                <span className="font-semibold">{selectedExchange.closure}</span>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <span className="text-slate-400">Status:</span>
+                                                <span className={`font-semibold ${assignments[selectedExchange.name] ? 'text-green-400' : 'text-orange-400'}`}>
+                                                    {assignments[selectedExchange.name] || 'Not Assigned'}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="text-lg font-semibold mb-3 text-green-400">Available Receiving Sites</h3>
+                                        <div className="space-y-2 max-h-48 overflow-y-auto">
+                                            {findAlternatives(selectedExchange).map(({ site, powerOk, capacityOk, currentLoad, remaining, assignedCount }) => (
+                                                <div
+                                                    key={site.name}
+                                                    onClick={() => assignExchange(selectedExchange.name, site.name)}
+                                                    className="bg-slate-700 p-3 rounded-lg cursor-pointer hover:bg-slate-600 transition-all"
+                                                >
+                                                    <div className="flex items-center justify-between mb-1">
+                                                        <span className="font-semibold text-sm">{site.name}</span>
+                                                        <CheckCircle size={16} className="text-green-400" />
+                                                    </div>
+                                                    <div className="text-xs text-slate-300 space-y-1">
+                                                        <div className="flex justify-between">
+                                                            <span>Power:</span>
+                                                            <span>{currentLoad + selectedExchange.power} / {site.availablePower} kW</span>
+                                                        </div>
+                                                        <div className="flex justify-between">
+                                                            <span>Capacity:</span>
+                                                            <span>{assignedCount + 1} / {site.capacity} exchanges</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                            {findAlternatives(selectedExchange).length === 0 && (
+                                                <div className="bg-red-900/30 border border-red-700 p-3 rounded-lg">
+                                                    <div className="flex items-center gap-2 text-red-400">
+                                                        <AlertTriangle size={16} />
+                                                        <span className="text-sm font-semibold">No suitable sites available</span>
+                                                    </div>
+                                                    <p className="text-xs text-slate-300 mt-2">
+                                                        All receiving sites are at capacity or cannot meet power requirements.
+                                                        Consider redistributing existing assignments.
+                                                    </p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
-                <!--end of row-->
-            </div>
-            <!--end of container-->
-        </section>
-    </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/flickr.js"></script>
-    <script src="js/flexslider.min.js"></script>
-    <script src="js/lightbox.min.js"></script>
-    <script src="js/masonry.min.js"></script>
-    <script src="js/twitterfetcher.min.js"></script>
-    <script src="js/spectragram.min.js"></script>
-    <script src="js/ytplayer.min.js"></script>
-    <script src="js/countdown.min.js"></script>
-    <script src="js/smooth-scroll.min.js"></script>
-    <script src="js/parallax.js"></script>
-    <script src="js/scripts.js"></script>
+            );
+        };
+
+        ReactDOM.render(<ExchangePlanner />, document.getElementById('root'));
+    </script>
 </body>
 </html>
-    
+```
 
+## Step 2: Create README.md
 
+```markdown
+# Openreach Exchange Migration Planner
+
+An interactive dashboard for planning Openreach telephone exchange closures and migrations to Openreach Handover Points (OHPs).
+
+## Features
+
+- **Geospatial Visualization**: Interactive UK map showing all exchanges and receiving sites
+- **Power Requirement Management**: Check if receiving sites have sufficient power capacity
+- **Smart Assignment System**: Click exchanges and receiving sites to create assignments
+- **Alternative Site Suggestions**: Automatically suggests suitable alternative sites when hovering
+- **Real-time Dashboard**: Track assigned vs unassigned exchanges
+
+## Live Demo
+
+Visit: `https://yourusername.github.io/openreach-exchange-planner`
+
+## Based on Data From
+
+This planner uses Phase 1 exchange closure data from Openreach's Exchange Exit Programme:
+- [ISPreview Article](https://www.ispreview.co.uk/index.php/2025/09/openreach-to-start-exiting-next-12-uk-exchanges-in-q3-2025-26.html)
+- [Openreach Official Programme](https://www.openreach.co.uk/cpportal/products/the-all-ip-programme/exchange-exit-programme)
+
+## Phase 1 Exchanges (Closure by Sep 2028)
+
+1. Staines
+2. Thames Ditton
+3. Baynard
+4. Wraysbury
+5. Nazeing
+6. Langford
+7. Allestree Park
+8. Beacon
+9. Childwall
+10. Lundin Links
+11. Carrickfergus
+12. Glengormley
+
+## How to Use
+
+1. **Select an Exchange**: Click on any exchange in the left panel or on the map
+2. **View Power Requirements**: See the power requirement for the selected exchange
+3. **Hover Over Sites**: Hover over receiving sites (OHPs) to see if they can handle the exchange
+4. **Assign Exchange**: Click on a suitable receiving site to create the assignment
+5. **View Alternatives**: Check the bottom panel for all available receiving sites sorted by distance
+
+### Color Coding
+
+- 🟠 **Orange Circle**: Unassigned exchange
+- 🟢 **Green Circle**: Assigned exchange
+- 🔵 **Blue Square**: Receiving site (OHP)
+- 🔴 **Red Square**: Receiving site cannot handle selected exchange (insufficient power)
+- 🟡 **Yellow Square**: Receiving site at capacity
+
+## Local Development
+
+Simply open `index.html` in a web browser. No build process required!
+
+## Technologies Used
+
+- React 18
+- Tailwind CSS
+- Vanilla JavaScript (ES6+)
+- SVG for map visualization
+
+## License
+
+MIT License - feel free to use and modify
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first.
+```
+
+## Step 3: Create .gitignore
+
+```
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+```
+
+## Step 4: Deploy to GitHub Pages
+
+1. **Create a new repository on GitHub**
+   - Go to https://github.com/new
+   - Name it `openreach-exchange-planner`
+   - Make it public
+   - Don't initialize with README (we'll add our own)
+
+2. **Push your code**
+
+```bash
+# Navigate to your project folder
+cd openreach-exchange-planner
+
+# Initialize git
+git init
+
+# Add all files
+git add .
+
+# Commit
+git commit -m "Initial commit: Openreach Exchange Planner"
+
+# Add remote (replace YOUR_USERNAME)
+git remote add origin https://github.com/YOUR_USERNAME/openreach-exchange-planner.git
+
+# Push to GitHub
+git branch -M main
+git push -u origin main
+```
+
+3. **Enable GitHub Pages**
+   - Go to your repository on GitHub
+   - Click **Settings** tab
+   - Scroll to **Pages** section (left sidebar)
+   - Under "Source", select **main** branch
+   - Select **/ (root)** folder
+   - Click **Save**
+   - Wait 1-2 minutes for deployment
+
+4. **Access your site**
+   - Your site will be live at: `https://YOUR_USERNAME.github.io/openreach-exchange-planner/`
+
+## Alternative: Quick Deploy Commands
+
+```bash
+# Clone or create your directory
+mkdir openreach-exchange-planner
+cd openreach-exchange-planner
+
+# Create the files (copy content from above)
+# - index.html
+# - README.md
+# - .gitignore
+
+# Initialize and push
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/YOUR_USERNAME/openreach-exchange-planner.git
+git push -u origin main
+```
+
+## Customization Ideas
+
+1. **Add more exchanges**: Edit the `exchangeData.phase1` array in `index.html`
+2. **Add more receiving sites**: Edit the `receivingSites` array
+3. **Change color scheme**: Modify Tailwind classes
+4. **Add export functionality**: Add buttons to export assignments as JSON/CSV
+5. **Add authentication**: Integrate GitHub OAuth for saving user assignments
+
+## Troubleshooting
+
+**Page not loading?**
+- Check that GitHub Pages is enabled in repository settings
+- Make sure `index.html` is in the root directory
+- Wait a few minutes for deployment to complete
+
+**Styles not working?**
+- The CDN links for React and Tailwind should work automatically
+- Check browser console for any errors
+
+**Need help?**
+- Open an issue on GitHub
+- Check the browser console for error messages
